@@ -21,7 +21,7 @@ export default function Expense(props: any) {
   }
 
   const filteredExpenses = props.expenses.filter(
-    (expense: { title: string; amount: number; date: Date; id: string }) => {
+    (expense: any) => {
       return expense.date.getFullYear().toString() === year;
     },
   );

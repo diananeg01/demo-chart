@@ -5,7 +5,7 @@ export default function ExpenseForm(props: any) {
   const [form, setForm] = useState({
     title: "",
     amount: 0,
-    date: "",
+    date: new Date(2019, 0, 1).toString(),
   });
 
   const formChangeHandler = (identifier: string, value: any) => {
