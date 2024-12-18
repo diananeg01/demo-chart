@@ -31,6 +31,8 @@ jobs:
       run: npm run build
 
   test:
+    needs: build # if this misses, the jobs will run in parallel, not sequentially
+    
     runs-on: ubuntu-latest
 
     strategy:
