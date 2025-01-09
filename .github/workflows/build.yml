@@ -40,14 +40,14 @@ jobs:
 
     - name: Publish JS filename
       id: publishJS
-      run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
+      run: find build/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
       
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: dist-files-${{ matrix.node-version }}
-        path: dist
+        path: build
         # path: |
         #   dist
         #   package.json
