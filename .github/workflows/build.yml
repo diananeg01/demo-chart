@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Output Github context
-        run: echo "${{toJSON(github)}}"
+        run: echo "${{ toJSON(github) }}"
   
   build:
     runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: dist-files-"${{ matrix.node-version }}"
+        name: dist-files-${{ matrix.node-version }}
         path: |
           dist
           package.json
