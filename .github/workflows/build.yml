@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     outputs:
-      script-file: ${{ steps.publishJS.outputs.script-file }}
+      style-file: ${{ steps.publishCSS.outputs.style-file }}
 
     strategy:
       matrix:
@@ -38,9 +38,9 @@ jobs:
     - name: Build
       run: npm run build
 
-    - name: Publish JS filename
-      id: publishJS
-      run: find build/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
+    - name: Publish CSS filename
+      id: publishCSS
+      run: find build/static/css/*.css -type f -execdir echo '::set-output name=style-file::{}' ';'
       
 
     - name: Upload artifacts
@@ -94,8 +94,8 @@ jobs:
       - name: Output contents
         run: ls
 
-      - name: Outpus JS filename from dist
-        run: echo "${{ needs.build.outputs.script-file }}"
+      - name: Outpus CSS filename from dist
+        run: echo "${{ needs.build.outputs.style-file }}"
 
       - name: Deploy
         run: echo "Deployed!"
