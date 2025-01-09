@@ -16,6 +16,8 @@ jobs:
   
   build:
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publishJS.outputs.script-file }}
 
     strategy:
       matrix:
@@ -36,13 +38,19 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: Publish JS filename
+      id: publishJS
+      run: find dist/assets/*.js -type f -execdir echo '::set-output name=script-file::{}' ';'
+      
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: dist-files-${{ matrix.node-version }}
-        path: |
-          dist
-          package.json
+        path: dist
+        # path: |
+        #   dist
+        #   package.json
 
   test:
     needs: build # if this misses, the jobs will run in parallel, not sequentially
@@ -85,6 +93,9 @@ jobs:
 
       - name: Output contents
         run: ls
+
+      - name: Outpus JS filename from dist
+        run: echo "${{ needs.build.outputs.script-file }}"
 
       - name: Deploy
         run: echo "Deployed!"
