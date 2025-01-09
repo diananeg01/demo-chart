@@ -36,6 +36,14 @@ jobs:
     - name: Build
       run: npm run build
 
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist-files
+        path: |
+          dist
+          package.json
+
   test:
     needs: build # if this misses, the jobs will run in parallel, not sequentially
     
