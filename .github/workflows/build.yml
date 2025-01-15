@@ -7,10 +7,19 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+env:
+  DB_NAME: mysql
+
 jobs:
   info:
+    env:
+      INFO_NAME: env_name_test
     runs-on: ubuntu-latest
     steps:
+      - name: Output job-specific and global env for test purpose
+        run: |
+          echo "INFO_NAME: ${{ env.INFO_NAME }}"
+          echo "DB_NAME: $DB_NAME"
       - name: Output Github context
         run: echo "${{ toJSON(github) }}" 
   
