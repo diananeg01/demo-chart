@@ -1,5 +1,5 @@
 name: Matrix Demo
-on: push
+on: workflow_dispatch
 jobs:
   build:
     continue-on-error: true # with this, even if the job fail, the other jobs won't stop and it will be mark as success
