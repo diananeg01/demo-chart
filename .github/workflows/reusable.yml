@@ -10,9 +10,14 @@ on:
     secrets: 
       some-secret:
         required: false
-        default: well
+    outputs:
+      result:
+        description: The result of the deploy op
+        value: ${{ jobs.deploy.outputs.outcome }}
 jobs:
   deploy:
+    outputs:
+      outcome: ${{ steps.set-result.outputs.step-result }}
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -23,3 +28,6 @@ jobs:
         run: ls
       - name: Output Info
         run: echo "Deploying & uploading..."
+      - name: Set result output
+        id: set-result
+        run: echo "::set-output name=step-result::success"
