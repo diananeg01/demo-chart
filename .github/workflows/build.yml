@@ -60,7 +60,7 @@ jobs:
 
     - name: Publish CSS filename
       id: publishCSS
-      run: find build/static/cs/*.css -type f -execdir echo '::set-output name=style-file::{}' ';'
+      run: find build/static/css/*.css -type f -execdir echo '::set-output name=style-file::{}' ';'
       
 
     - name: Upload artifacts
