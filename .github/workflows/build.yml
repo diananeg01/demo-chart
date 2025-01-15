@@ -14,12 +14,16 @@ jobs:
   info:
     env:
       INFO_NAME: env_name_test
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
     runs-on: ubuntu-latest
     steps:
       - name: Output job-specific and global env for test purpose
         run: |
           echo "INFO_NAME: ${{ env.INFO_NAME }}"
           echo "DB_NAME: $DB_NAME"
+          echo "DB_USER: ${{ env.DB_USER }}"
+          echo "DB_PASSWORD: ${{ env.DB_PASSWORD }}"
       - name: Output Github context
         run: echo "${{ toJSON(github) }}" 
   
