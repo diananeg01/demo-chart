@@ -48,7 +48,7 @@ jobs:
 
     - name: Load & cache dependencies
       id: cache-deps
-      uses: ./.github/actions/cached-deps
+      uses: .github/actions/cached-deps
       with:
         caching: 'false'
 
@@ -91,7 +91,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Load & cache dependencies
-      uses: ./.github/actions/cached-deps
+      uses: .github/actions/cached-deps
       
     - name: Test
       run: npm test
