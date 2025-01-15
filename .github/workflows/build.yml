@@ -46,15 +46,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Cache dependencies
-      uses: actions/cache@v4
-      with:
-        path: node_modules
-        key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-
-    - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: npm ci
+    - name: Load & cache dependencies
+      uses: ./.github/actions/cached-deps
 
     - name: Build
       run: npm run build
@@ -91,16 +84,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Cache dependencies
-      uses: actions/cache@v4
-      with:
-        path: node_modules
-        key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-
-    - name: Install dependencies
-      if: steps.cache.outputs.cache-hit != 'true'
-      run: npm ci
-
+    - name: Load & cache dependencies
+      uses: ./.github/actions/cached-deps
+      
     - name: Test
       run: npm test
 
