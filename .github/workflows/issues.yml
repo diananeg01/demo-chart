@@ -2,6 +2,8 @@ name: "Output Event Details on Issues"
 on: issues
 jobs:
   output-info:
+    permissions:
+      issues: read|write
     runs-on: ubuntu-latest
     steps:
       - name: "Output event details"
